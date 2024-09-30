@@ -8,16 +8,26 @@ namespace CnvgncMoney
 {
     public class ModelCurrency
     {
-        public ModelCurrency(string code, string name, double? amount)
+        public ModelCurrency(string _code, string _name, double _rateAmount)
         {
-            Code = code;
-            Name = name;
-            Amount = amount;
+            Code = _code;
+            Name = _name;
+            rateAmount = _rateAmount;
         }
 
         public string Code { get; set; }
         public string Name { get; set; }
-        public double? Amount { get; set; }
+        public double rateAmount { get; set; }
+
+        public double convertToIDR(double _amount)
+        {
+            return _amount / rateAmount;
+        }
+
+        public double convertFromIDR(double _amountInIDR)
+        {
+            return _amountInIDR * rateAmount;
+        }
     }
 
 }
